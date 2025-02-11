@@ -46,22 +46,5 @@ func MustLoad() (*Config, error) {
 
 	logrus.Info("Loaded app configuration")
 
-	//return &Config{
-	//	Server: Server{
-	//		Port: 8080,
-	//	},
-	//	Database: Database{
-	//		Host:      "localhost",
-	//		Port:      5432,
-	//		User:      "postgres",
-	//		Password:  "admin",
-	//		Name:      "commentary",
-	//		StoreInDB: false,
-	//	},
-	//	Logger: Logger{
-	//		FileName: "Commentary.log",
-	//	},
-	//}, nil
-
 	return &config, nil
 }
