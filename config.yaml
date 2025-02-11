@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+database:
+  host: "db"
+  port: 5432
+  user: "postgres"
+  password: "admin"
+  name: "commentary"
+  store_in_db: true
+
+logger:
+  filename: "Commentary.log"
