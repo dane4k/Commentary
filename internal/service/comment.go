@@ -7,6 +7,7 @@ import (
 	"Commentary/internal/pubsub"
 	"Commentary/internal/repo/pgdb"
 	"context"
+	"errors"
 	"fmt"
 	"sync"
 	"time"
@@ -104,6 +105,10 @@ func GetAuthorIDs(comments []*entity.Comment) []int {
 
 func (cs *commentService) CreateComment(ctx context.Context,
 	comment model.CreateCommentInput) (*model.Comment, error) {
+
+	if len(comment.Content) > 2000 {
+		return nil, errors.New("comment content exceeds the limitation of 2000 symbols")
+	}
 
 	commentToAdd := &entity.Comment{
 		PostID:   comment.PostID,

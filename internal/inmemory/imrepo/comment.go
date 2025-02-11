@@ -3,12 +3,17 @@ package imrepo
 import (
 	"Commentary/internal/entity"
 	"Commentary/internal/graph/model"
+	"errors"
 	"github.com/sirupsen/logrus"
 	"time"
 )
 
 func (imr *InMemoryRepo) AddComment(input model.CreateCommentInput) (*entity.Comment, error) {
 	logrus.Debug("adding comment")
+
+	if len(input.Content) > 2000 {
+		return nil, errors.New("comment content exceeds the limitation of 2000 symbols")
+	}
 
 	imr.mu.Lock()
 	defer imr.mu.Unlock()
